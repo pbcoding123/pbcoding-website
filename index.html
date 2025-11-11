@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pbcoding的网页</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg">
+    <!-- 导航栏 -->
+    <nav class="bg-white bg-opacity-90 backdrop-blur-sm shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-code text-2xl text-purple-600 mr-3"></i>
+                    <h1 class="text-xl font-bold text-gray-800">pbcoding</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">首页</a>
+                    <a href="https://github.com/pbcoding123" class="text-gray-600 hover:text-purple-600 transition-colors">项目</a>
+                    <a href="https://github.com/pbcoding123" class="text-gray-600 hover:text-purple-600 transition-colors">关于我们</a>
+                </div>
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                欢迎来到<span class="text-yellow-300">pbcoding的网页</span>
+            </h1>
+            <p class="text-xl text-white opacity-90 mb-12 max-w-3xl mx-auto">
+                这是一个pbcoding的网页。
+            </p>
+
+            <!-- 主要链接区域 -->
+            <div class="flex justify-center mb-16">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl p-8 card-hover">
+                        <i class="fas fa-rocket text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">探索更多</h3>
+                        <p class="text-gray-600 mb-6">发现一些有趣的小程序</p>
+                        <a href="https://github.com/pbcoding123"
+                           class="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                            <span>立即探索</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 card-hover">
+                        <i class="fas fa-download text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">资源下载</h3>
+                        <p class="text-gray-600 mb-6">获取一些有趣的小代码</p>
+                        <a href="https://github.com/pbcoding123"
+                           class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <span>下载资源</span>
+                            <i class="fas fa-download ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-8 card-hover">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+	                <i class="fas fa-link text-2xl text-blue-600 px-2"></i>快速访问
+				</h3>
+	     		<p class="text-gray-600 mb-6">快速打开一些实用的链接</p>
+	     		<div class="bg-blue-100 rounded-2xl p-8 mb-8">
+				 	<h5 class="text-2xl text-gray-500 mb-4">工具</h5>
+		     		<div class="grid md:grid-cols-4 grid-rows-1 gap-4">
+			     		<a href="https://www.remove.bg"
+		                   class="inline items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>图片去除背景</span>
+		                </a>
+		                <a href="https://casket.wave-let.cn"
+		                   class="inline items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>Markdown编辑器</span>
+		                </a>
+		                <a href="https://copy.sh/v86"
+		                   class="inline items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>系统模拟器</span>
+		                </a>
+		                <a href="https://csacademy.com/app/graph_editor"
+		                   class="inline items-center px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>图论编辑器</span>
+		                </a>
+		     		</div>
+	     		</div>
+	     		<div class="bg-green-100 rounded-2xl p-8" style="display:none">
+				 	<h5 class="text-2xl text-gray-500 mb-4">游戏</h5>
+		     		<div class="grid md:grid-cols-4 grid-rows-1 gap-4">
+			     		<a href="https://www.remove.bg"
+		                   class="inline items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>图片去除背景</span>
+		                </a>
+		                <a href="https://casket.wave-let.cn"
+		                   class="inline items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>Markdown编辑器</span>
+		                </a>
+		                <a href="https://copy.sh/v86"
+		                   class="inline items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>系统模拟器</span>
+		                </a>
+		                <a href="https://csacademy.com/app/graph_editor"
+		                   class="inline items-center px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-blue-700 transition-colors mb-4">
+		                    <span>图论编辑器</span>
+		                </a>
+		     		</div>
+	     		</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 简单的交互动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-hover');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
