@@ -1,0 +1,116 @@
+<!--PassCode-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pbcoding的网页</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+	<style>
+		.failed { color: red; margin-top: 5px; }
+		.success { color: green; margin-top: 5px; }
+	</style>
+</head>
+<body class="min-h-screen gradient-bg">
+    <!-- 导航栏 -->
+    <nav class="bg-white bg-opacity-90 backdrop-blur-sm shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-code text-2xl text-purple-600 mr-3"></i>
+                    <h1 class="text-xl font-bold text-gray-800">pbcoding</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="https://pbcoding123.dpdns.org" class="text-gray-600 hover:text-purple-600 transition-colors">首页</a>
+                    <a href="https://pbcoding123.dpdns.org/links" class="text-gray-600 hover:text-purple-600 transition-colors">快速访问</a>
+                    <a href="https://pbcoding123.dpdns.org/about-us" class="text-gray-600 hover:text-purple-600 transition-colors">关于我们</a>
+                    <a href="https://pbcoding123.dpdns.org/passcode" class="text-gray-600 hover:text-purple-600 transition-colors">Pass Code</a>
+                </div>
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center fade-in">
+            <div class="flex justify-center mb-16" id="inputpass">
+            	<div class="bg-white rounded-2xl p-8 card-hover">
+            		<input class="px-3 py-2" style="border: 2px solid green;" type="text" id="userInput" placeholder="请输入Pass Code">
+					<button id="submitBtn"
+						class="inline-flex items-center px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+						提交验证</button>
+					<div id="message"></div>
+            	</div>
+            </div>
+            <div id="secretdiv">
+            </div>
+        </div>
+    </main>
+	<div class="py-20"></div>
+	<div class="py-20"></div>
+	<div class="py-10"></div>
+    <footer class="bg-gray-800 text-white">
+        <div class="border-t border-gray-700">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2025 Pbcoding. 保留所有权利.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElement = document.querySelector('footer p');
+            if (yearElement) {
+                const currentYear = new Date().getFullYear();
+                yearElement.innerHTML = yearElement.innerHTML.replace('2025', currentYear);
+            }
+        });
+    </script>
+ 	<script src="checkpasscode.js"></script>
+ 	<script src="addDiv.js"></script>
+    <script>
+	    const input = document.getElementById('userInput');
+	    const button = document.getElementById('submitBtn');
+	    const inppass = document.getElementById('inputpass');
+
+	    button.addEventListener('click', function(){
+			const value = input.value;
+			if (check(value)){
+				addsecretdiv();
+				inppass.style = "display: none;";
+			}
+			else{
+				alert("PassCode错误!");
+			}
+	    });
+  	</script>
+</body>
+</html>
