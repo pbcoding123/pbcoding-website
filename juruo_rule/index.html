@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>蒟蒻法典</title>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <!-- 1. 引入 KaTeX (用于渲染数学公式) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  
+  <!-- 2. 引入 Marked 及其数学公式扩展 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked-katex-extension@7.3.2/lib/index.umd.js"></script>
+
   <style>
     body {
       font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -57,7 +65,7 @@
 
 > Version 2.0.2
 
-> **致谢**：本准则大部分内容基于 @[zengchenyu0356](https://www.luogu.com.cn/user/1701497) 与 @[zhengwenbang](https://www.luogu.com.cn/user/1433239) 的原始法典，并吸纳了团队成员的多项补充建议。本次修订着重整合原有条款、优化梯度处罚、强化新人保护，力求规则清晰、执行公正、氛围友善。
+> **致谢**：本准则大部分内容基于 @[zengchenyu0356](luogu://user/1701497) 与 @[zhengwenbang](luogu://user/1433239) 的原始法典，并吸纳了团队成员的多项补充建议。本次修订着重整合原有条款、优化梯度处罚、强化新人保护，力求规则清晰、执行公正、氛围友善。
 
 ---
 
@@ -268,13 +276,14 @@
 
 ---
 
-> 贡献成员：@zhengwenbang,@zengchenyu0356,@\_Fjc_,@pbcoding,@huangjiarun88及其小号,@Sheep_God。
-
-
-
+> 贡献成员：@zhengwenbang,@zengchenyu0356,@_Fjc_,@pbcoding,@huajiarun88及其小号,@Sheep_God。
   </script>
 
   <script>
+    // 启用数学公式扩展
+    marked.use(markedKatexExtension());
+    
+    // 读取并渲染
     const source = document.getElementById('md-source').textContent;
     document.getElementById('output').innerHTML = marked.parse(source);
   </script>
