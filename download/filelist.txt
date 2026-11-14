@@ -23,3 +23,6 @@ scriptcat.zip
 sm.cpp
 sm.exe
 template.cpp
+#
+cpeditor_001.chunk
+firefox_001.chunk
