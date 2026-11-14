@@ -105,7 +105,6 @@ int main(int argc, char* argv[]){
 	hidecur();
 	noedit();
 	if(argc>=2){
-		cout << argv[1] << "|" << argv[2] << "|\n";
 		if(argv[1][0]=='s'){
 			string t=argv[2];
 			string pre=t.substr(t.find_last_of('\\')+1);
