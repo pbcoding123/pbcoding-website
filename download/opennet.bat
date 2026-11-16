@@ -1,7 +1,8 @@
-﻿@echo off
-chcp 65001
+rem 直接 Ctrl+A 复制这一段到 bat 文件运行，即可在机房自由上网
+
 @echo off
-echo =====Open net 2.5=====
+chcp 65001 >nul
+echo =====Open net 2.6=====
 echo Create by Pbcoding.
 echo.
 net session >nul 2>&1
@@ -47,3 +48,7 @@ echo.
 echo 更改完成。 
 echo.
 timeout /t 5
+
+rem 看到不要删，记住这个网址，它能在机房救你一命！
+
+rem by pbcoding
