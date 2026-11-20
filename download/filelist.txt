@@ -2,6 +2,7 @@
 Luogu-Background.png
 active.bat
 config.cpeditor
+NeatDM_setup.exe
 cpeditor_001.chunk
 cpeditor_002.chunk
 cpeditor_003.chunk
