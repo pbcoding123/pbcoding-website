@@ -14,8 +14,20 @@ void hidecur(){CONSOLE_CURSOR_INFO cursor_info={1,0};SetConsoleCursorInfo(GetStd
 void putnstr(int n, string s){for(int _=1;_<=n;_++)cout << s;}
 void noedit(){HANDLE hStdin=GetStdHandle(STD_INPUT_HANDLE);DWORD mode;GetConsoleMode(hStdin,&mode);mode&=~ENABLE_QUICK_EDIT_MODE;mode&=~ENABLE_INSERT_MODE;mode&=~ENABLE_MOUSE_INPUT;SetConsoleMode(hStdin,mode);}
 void setcolor(int x){SetConsoleTextAttribute(GetStdHandle(4294967285u),x);}
+void SetConsoleFont(int fontSize=30) {
+    HANDLE hOutput=GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_FONT_INFOEX cfi;
+    cfi.cbSize = sizeof(cfi);
+    cfi.nFont = 0;
+    cfi.dwFontSize.X = 0;
+    cfi.dwFontSize.Y = fontSize;
+    cfi.FontFamily = FF_DONTCARE;
+    cfi.FontWeight = FW_NORMAL;
+    lstrcpyW(cfi.FaceName, L"Consolas");
+    SetCurrentConsoleFontEx(hOutput, FALSE, &cfi);
+}
 
-bool splitExe(const string& inputFile, const string& outputPrefix, size_t chunkSize) {
+bool splitExe(const string& inputFile, const string& outputPrefix, size_t chunkSize, const string& outputSuffix) {
     ifstream in(inputFile, ios::binary);
     if (!in) {
         cerr << "[ERROR] Cannot open input file: " << inputFile << endl;
@@ -33,7 +45,7 @@ bool splitExe(const string& inputFile, const string& outputPrefix, size_t chunkS
             ostringstream outName;
             outName << outputPrefix << "_"
                     << setw(3) << setfill('0') << fileIndex
-                    << ".chunk";
+                    << outputSuffix;
 
             ofstream out(outName.str(), ios::binary);
             if (!out) {
@@ -81,7 +93,7 @@ bool mergeExe(const string& inputPrefix, const string& outputFile) {
     cout << ">>> Successfully merge into: " << outputFile << "\n" << endl;
     return true;
 }
-string OpenDialog() {
+string OpenDialog(const string& title="Open file...") {
     char savePath[MAX_PATH]="D:\\";
     OPENFILENAME ofn;
     char szFileName[MAX_PATH] = "";
@@ -92,7 +104,7 @@ string OpenDialog() {
     ofn.lpstrFile = szFileName;
     ofn.nMaxFile = MAX_PATH;
     ofn.lpstrInitialDir = savePath;
-    ofn.lpstrTitle = "Open file...";
+    ofn.lpstrTitle = title.c_str();
     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 
     if (GetOpenFileName(&ofn) == TRUE) {
@@ -107,16 +119,49 @@ int main(int argc, char* argv[]){
 	if(argc>=2){
 		if(argv[1][0]=='s'){
 			string t=argv[2];
+			int chunksize=10485760;
+			string suf=".chunk";
+			if(argc>=4){
+				chunksize = stoi(argv[3]);
+				if(argc>=5){
+					suf = argv[4];
+				}
+			}
 			string pre=t.substr(t.find_last_of('\\')+1);
 			pre = pre.substr(0, pre.find_last_of('.'));
-			splitExe(t, pre, 10485760);
+			splitExe(t, pre, chunksize, suf);
 		}
 		else if(argv[1][0]=='m'){
 			string t=argv[2];
 			string pre=t.substr(t.find_last_of('\\')+1);
 			pre = pre.substr(0, pre.find_last_of('.'));
 			pre = pre.substr(0, pre.find_last_of('_'));
-			mergeExe(pre, pre+".exe");
+			string target=pre+".exe";
+			if(argc>=4){
+				target = argv[3];
+			}
+			mergeExe(pre, target);
+		}
+		else if(argv[1][0]=='h'){
+			printf( "\n"
+					"===== Split & Merge =====\n"
+					"\n"
+					"By Pbcoding.\n\n"
+					"Introduction\n"
+					"\tSplit a file to a few chunks and merge chunks to raw file.\n"
+					"\tIt solves the problem of that some website forbidden uploading too large files.\n"
+					"\n"
+					"How to use\n"
+					"\tYou can use command line mode and CUI mode.\n"
+					"\tCommand line mode:\n"
+					"\t\tsm s filename chunksize suffix\n"
+					"\t\tsm m filename outputfile\n"
+					"\t\tsm h\n"
+					"\tCUI mode:\n"
+					"\t\tOpen and input info, then it will work.\n\n");
+		}
+		else{
+			cout << "Unknown parameter.";
 		}
 		return 0;
 	}
@@ -127,15 +172,25 @@ int main(int argc, char* argv[]){
 		string t=OpenDialog();
 		string pre=t.substr(t.find_last_of('\\')+1);
 		pre = pre.substr(0, pre.find_last_of('.'));
-		splitExe(t, pre, 10485760);
+		int chunksize=10485760;
+		cout << "Chunk size:";
+		cin >> chunksize;
+		if(chunksize<=0) chunksize = 10485760;
+		string suf=".chunk";
+		cout << "Output suffix:";
+		cin >> suf;
+		splitExe(t, pre, chunksize, suf);
 	}
-	else{
+	else if(c=='m'){
 		string t=OpenDialog();
 		string pre=t.substr(t.find_last_of('\\')+1);
 		pre = pre.substr(0, pre.find_last_of('.'));
 		pre = pre.substr(0, pre.find_last_of('_'));
-		mergeExe(pre, pre+".exe");
+		string output=OpenDialog("Save to...");
+		mergeExe(pre, output);
+	}
+	else{
+		cout << "Unknown parameter.";
 	}
 	return 0;
 }
-
