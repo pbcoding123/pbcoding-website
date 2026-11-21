@@ -61,7 +61,7 @@ bool splitExe(const string& inputFile, const string& outputPrefix, size_t chunkS
     cout << ">>> Successfully split! Generate totally " << (fileIndex - 1) << " chunk(s).\n" << endl;
     return true;
 }
-bool mergeExe(const string& inputPrefix, const string& outputFile) {
+bool mergeExe(const string& inputPrefix, const string& inputSuffix, const string& outputFile) {
     ofstream out(outputFile, ios::binary);
     if (!out) {
         cerr << "[ERROR] Cannot create output file: " << outputFile << endl;
@@ -73,7 +73,7 @@ bool mergeExe(const string& inputPrefix, const string& outputFile) {
         ostringstream inName;
         inName << inputPrefix << "_"
                << setw(3) << setfill('0') << fileIndex
-               << ".chunk";
+               << inputSuffix;
 
         ifstream in(inName.str(), ios::binary);
         if (!in) {
@@ -93,7 +93,7 @@ bool mergeExe(const string& inputPrefix, const string& outputFile) {
     cout << ">>> Successfully merge into: " << outputFile << "\n" << endl;
     return true;
 }
-string OpenDialog(const string& title="Open file...") {
+string OpenDialog(const string& title="Open file...", const bool& fileExist=true) {
     char savePath[MAX_PATH]="D:\\";
     OPENFILENAME ofn;
     char szFileName[MAX_PATH] = "";
@@ -105,7 +105,7 @@ string OpenDialog(const string& title="Open file...") {
     ofn.nMaxFile = MAX_PATH;
     ofn.lpstrInitialDir = savePath;
     ofn.lpstrTitle = title.c_str();
-    ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+    ofn.Flags = OFN_PATHMUSTEXIST | (fileExist?OFN_FILEMUSTEXIST:0) | OFN_NOCHANGEDIR;
 
     if (GetOpenFileName(&ofn) == TRUE) {
         return string(szFileName);
@@ -127,24 +127,23 @@ int main(int argc, char* argv[]){
 					suf = argv[4];
 				}
 			}
-			string pre=t.substr(t.find_last_of('\\')+1);
-			pre = pre.substr(0, pre.find_last_of('.'));
+			string pre = t.substr(0, t.find_last_of('.'));
 			splitExe(t, pre, chunksize, suf);
 		}
 		else if(argv[1][0]=='m'){
 			string t=argv[2];
-			string pre=t.substr(t.find_last_of('\\')+1);
-			pre = pre.substr(0, pre.find_last_of('.'));
+			string suf=t.substr(t.find_last_of('.'));
+			string pre=t.substr(0, t.find_last_of('.'));
 			pre = pre.substr(0, pre.find_last_of('_'));
 			string target=pre+".exe";
 			if(argc>=4){
 				target = argv[3];
 			}
-			mergeExe(pre, target);
+			mergeExe(pre, suf, target);
 		}
 		else if(argv[1][0]=='h'){
 			printf( "\n"
-					"===== Split & Merge =====\n"
+					"===== Split & Merge 2.5 =====\n"
 					"\n"
 					"By Pbcoding.\n\n"
 					"Introduction\n"
@@ -170,8 +169,7 @@ int main(int argc, char* argv[]){
 	cin >> c;
 	if(c=='s'){
 		string t=OpenDialog();
-		string pre=t.substr(t.find_last_of('\\')+1);
-		pre = pre.substr(0, pre.find_last_of('.'));
+		string pre = t.substr(0, t.find_last_of('.'));
 		int chunksize=10485760;
 		cout << "Chunk size:";
 		cin >> chunksize;
@@ -183,11 +181,11 @@ int main(int argc, char* argv[]){
 	}
 	else if(c=='m'){
 		string t=OpenDialog();
-		string pre=t.substr(t.find_last_of('\\')+1);
-		pre = pre.substr(0, pre.find_last_of('.'));
+		string suf=t.substr(t.find_last_of('.'));
+		string pre=t.substr(0, t.find_last_of('.'));
 		pre = pre.substr(0, pre.find_last_of('_'));
-		string output=OpenDialog("Save to...");
-		mergeExe(pre, output);
+		string output=OpenDialog("Save to...", false);
+		mergeExe(pre, suf, output);
 	}
 	else{
 		cout << "Unknown parameter.";
