@@ -153,20 +153,24 @@ void software(){
 	cout << "Enter Y to install softwares:";
 	cin >> c;
 	if(c!='Y') return;
-	system("start .\\download\\7z.exe");
-	system("start .\\download\\active.bat");
-	system("start .\\download\\cpeditor.exe");
-	system("start .\\download\\firefox.exe");
-	system("start .\\download\\quicker.msi");
+	system("start 7z.exe");
+	system("start active.bat");
+	system("start cpeditor.exe");
+	system("start firefox.exe");
+	system("start quicker.msi");
+	CreateDirectory("D:\\lock", NULL);
+	system("copy lock.cfg D:\\lock\\lock.cfg");
+	system("copy lock.exe D:\\lock\\lock.exe");
+	system("start NeatDM_setup.exe");
 }
 
 int main(){
 	CreateDirectory("D:\\pbcoding", NULL);
 	devcpp();
-	wallpaper();
 	download();
-	system("copy .\\download\\template.cpp D:\\pbcoding\\template.cpp");
+	system("copy template.cpp D:\\pbcoding\\template.cpp");
 	software();
+	wallpaper();
     system("pause");
 	return 0;
 }

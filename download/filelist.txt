@@ -23,6 +23,8 @@ quicker.msi
 scriptcat.zip
 sm.cpp
 sm.exe
+lock.cfg
+lock.exe
 template.cpp
 #
 cpeditor_001.chunk
