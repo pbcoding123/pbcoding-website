@@ -25,6 +25,7 @@ sm.cpp
 sm.exe
 lock.cfg
 lock.exe
+Command_Line_Ex.exe
 template.cpp
 #
 cpeditor_001.chunk
