@@ -22,7 +22,7 @@ wrap_text=false
 beta=false
 replace_tabs=false
 save_tests=false
-maximized_window=false
+maximized_window=true
 check_update=true
 opacity=80
 view_mode=split
@@ -116,11 +116,11 @@ parentheses=@Variant(\0\0\0\t\0\0\0\x5\0\0\0\x2\0\0\0(\0\0\0\x2\0\0\0)\0\0\0\x2\
 [competitive_companion]
 enable=true
 connection_port=10045
-open_new_tab=true
-set_time_limit_for_tab=false
-head_comments=Problem: ${json.name}\nContest: ${json.group}\nURL: ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit: ${json.timeLimit} ms
+open_new_tab=false
+set_time_limit_for_tab=true
+head_comments=Problem:      ${json.name}\nContest:      ${json.group}\nURL:          ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit:   ${json.timeLimit} ms\nStart Time:   ${time}\n\nBy pbcoding
 head_comments_time_format=yyyy-MM-dd HH:mm:ss
-head_comments_powered_by_cp_editor=true
+head_comments_powered_by_cp_editor=false
 
 [hotkey]
 format=
@@ -166,7 +166,7 @@ user=
 password=
 
 [default_path]
-names_and_paths=@Variant(\0\0\0\t\0\0\0\x1\0\0\0\v\0\0\0\x2\0\0\0\x10\0s\0\x65\0t\0t\0i\0n\0g\0s\0\0\0\0)
+names_and_paths=@Variant(\0\0\0\v\0\0\0\x2\0\0\0\xe\0\x63\0h\0\x65\0\x63\0k\0\x65\0r\0\0\0(\0\x44\0:\0/\0p\0\x62\0\x63\0o\0\x64\0i\0n\0g\0/\0\x32\0\x30\0\x32\0\x36\0\x31\0\x31\0\x32\0\x34), @Variant(\0\0\0\v\0\0\0\x2\0\0\0\b\0\x66\0i\0l\0\x65\0\0\0(\0\x44\0:\0/\0p\0\x62\0\x63\0o\0\x64\0i\0n\0g\0/\0\x32\0\x30\0\x32\0\x36\0\x31\0\x31\0\x32\0\x34), @Variant(\0\0\0\v\0\0\0\x2\0\0\0\x10\0s\0\x65\0t\0t\0i\0n\0g\0s\0\0\0p\0\x43\0:\0/\0U\0s\0\x65\0r\0s\0/\0U\0s\0\x65\0r\0/\0\x44\0o\0\x63\0u\0m\0\x65\0n\0t\0s\0/\0G\0i\0t\0H\0u\0\x62\0/\0p\0\x62\0\x63\0o\0\x64\0i\0n\0g\0-\0w\0\x65\0\x62\0s\0i\0t\0\x65\0/\0\x64\0o\0w\0n\0l\0o\0\x61\0\x64), @Variant(\0\0\0\v\0\0\0\x2\0\0\0\x10\0t\0\x65\0s\0t\0\x63\0\x61\0s\0\x65\0\0\0(\0\x44\0:\0/\0p\0\x62\0\x63\0o\0\x64\0i\0n\0g\0/\0\x32\0\x30\0\x32\0\x36\0\x31\0\x31\0\x32\0\x34)
 action\open_file\uses=${file}
 action\open_file\changes="file, testcase, checker"
 action\save_file\uses=${file}
